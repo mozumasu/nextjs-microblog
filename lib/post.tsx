@@ -1,9 +1,13 @@
 import path from 'path';
 import fs, { readFileSync } from 'fs';
 import matter from 'gray-matter';
+import { remark } from 'remark';
+import html from 'remark-html';
+
+//mdファイルが格納されたディレクトリのパス取得
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-//mdファイルのデータを取得
+//mdファイルのデータを取得(トップページ表示用)
 export function getPostsData() {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
@@ -22,4 +26,35 @@ export function getPostsData() {
     };
   });
   return allPostsData;
+}
+
+//getStaticPathでreturnで使用するpathを取得
+export function getAllPostIds() {
+  const fileNames = fs.readdirSync(postsDirectory);
+  return fileNames.map((fileName) => {
+    return {
+      params: {
+        id: fileName.replace(/\.md$/, ''), //ファイル名(URLのid)
+      },
+    };
+  });
+}
+
+//idに基づいてブログ投稿用データを返す
+export async function getPostData(id) {
+  const fullPath = path.join(postsDirectory, `${id}.md`);
+  const fileContent = fs.readFileSync(fullPath, 'utf8');
+
+  //解析
+  const mattarResult = matter(fileContent);
+  //remarkで解析し、本文をHTML形式に変換
+  const blogContent = await remark().use(html).process(mattarResult.content);
+
+  const blogContentHTML = blogContent.toString();
+
+  return {
+    id,
+    blogContentHTML,
+    ...mattarResult.data,
+  };
 }
