@@ -28,7 +28,7 @@ export function getPostsData() {
   return allPostsData;
 }
 
-//getStaticPathでreturnで使用するpathを取得
+//getStaticPathsで使用する動的ルーティングのURLを取得
 export function getAllPostIds() {
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames.map((fileName) => {
