@@ -2,7 +2,7 @@ import Layout from '../../../components/Layout';
 import { getAllPostIds, getPostData } from '../../../lib/post';
 import utilStyles from '../../styles/utils.module.css';
 
-//URLの動的に変わる部分のパスを返し、pahtsに含まれないパスは404ページを表示
+//URLの動的に変わる部分のパスを返し、pathsに含まれないパスは404ページを表示
 export async function getStaticPaths() {
   const paths = getAllPostIds();
 
@@ -29,8 +29,9 @@ export default function Post({ postData }) {
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div className={utilStyles.lightText}>{postData.date}</div>
-        {postData.blogContentHTML}
-        <div dangerouslySetInnerHTML={{ __html: postData.blogContentHTML }} />
+        <div>{postData.blogContentHTML} </div>
+
+        {/* <div dangerouslySetInnerHTML={{ __html: postData.blogContentHTML }} /> */}
       </article>
     </Layout>
   );

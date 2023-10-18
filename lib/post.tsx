@@ -3,6 +3,9 @@ import fs, { readFileSync } from 'fs';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+//dangerouslySetInnerHTMLがうまく機能しないため下記を追加
+// import remarkParse from 'remark-parse';
+// import { unified } from 'unified';
 
 //mdファイルが格納されたディレクトリのパス取得
 const postsDirectory = path.join(process.cwd(), 'posts');
@@ -46,15 +49,23 @@ export async function getPostData(id) {
   const fileContent = fs.readFileSync(fullPath, 'utf8');
 
   //解析
-  const mattarResult = matter(fileContent);
+  const matterResult = matter(fileContent);
   //remarkで解析し、本文をHTML形式に変換
-  const blogContent = await remark().use(html).process(mattarResult.content);
+  const blogContent = await remark().use(html).process(matterResult.content);
+  // const blogContent = await unified()
+  //   .use(remarkParse)
+  //   .use(html)
+  //   .process(matterResult.content);
+  // const blogContent = await unified()
+  //   .use(remarkParse)
+  //   .use(html)
+  //   .process(matterResult.content);
 
   const blogContentHTML = blogContent.toString();
 
   return {
     id,
     blogContentHTML,
-    ...mattarResult.data,
+    ...matterResult.data,
   };
 }
