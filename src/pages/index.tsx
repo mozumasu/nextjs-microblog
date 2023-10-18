@@ -31,7 +31,7 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData }) {
   return (
-    <Layout>
+    <Layout home>
       <section className={utilStyle.headingMd}>
         <p>
           フルスタックエンジニアを目指して勉強＆転職活動中です。/TypeScript、Next.js、Node.jsを勉強中です。
