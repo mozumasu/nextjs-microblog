@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import Head from 'next/head';
-import Layout from '../../components/Layout';
+import Layout, { siteTitle } from '../../components/Layout';
 import { getPostsData } from '../../lib/post';
 
 import utilStyle from '../styles/utils.module.css';
@@ -31,7 +31,10 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData }) {
   return (
-    <Layout>
+    <Layout home>
+      <Head>
+        <title>{siteTitle}</title>
+      </Head>
       <section className={utilStyle.headingMd}>
         <p>
           フルスタックエンジニアを目指して勉強＆転職活動中です。/TypeScript、Next.js、Node.jsを勉強中です。
