@@ -5,11 +5,20 @@ import utilStyles from '../../styles/utils.module.css';
 
 //URLの動的に変わる部分のパスを返し、pathsに含まれないパスは404ページを表示
 export async function getStaticPaths() {
-  const paths = getAllPostIds();
+  const ids = await getAllPostIds();
+
+  const paths = ids.map((id) => {
+    return {
+      params: {
+        id: id,
+      },
+    };
+  });
 
   return {
-    // paths,
-    paths: [{ params: { id: 'test1' } }, { params: { id: 'test2' } }],
+    paths,
+    // params: paths,
+    // paths: [{ params: { id: 'test1' } }, { params: { id: 'test2' } }],
 
     fallback: false,
   };
@@ -18,15 +27,17 @@ export async function getStaticPaths() {
 //getStaticPathsを使用するため記述
 export async function getStaticProps({ params }) {
   //CMSから取得
-  const postData = await getPostData('test1');
+  //開いたIDで取得する編集
+  // const postData = await getPostData('test1');
+  const postData = await getPostData(params.id);
   console.log(postData);
 
   // const postData = await getPostData(params.id);
 
   return {
     props: {
-      postData: postData.contents[0],
-      // postData,
+      // postData: postData.contents[0],
+      postData,
     },
   };
 }
@@ -40,8 +51,10 @@ export default function Post({ postData }) {
         <title>{postData.title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-        <h1 className={utilStyles.headingXl}>{postData.discription}</h1>
+        <h1 className={utilStyles.headingXl}>{postData.contents[0].title}</h1>
+        <h1 className={utilStyles.headingXl}>
+          {postData.contents[0].description}
+        </h1>
         {/* <div className={utilStyles.lightText}>{postData.date}</div>
         <div>{postData.blogContentHTML} </div> */}
 

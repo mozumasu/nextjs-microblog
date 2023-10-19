@@ -4,14 +4,11 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 import { client } from '../lib/microCMS';
-//dangerouslySetInnerHTMLがうまく機能しないため下記を追加
-// import remarkParse from 'remark-parse';
-// import { unified } from 'unified';
 
 //mdファイルが格納されたディレクトリのパス取得
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-//mdファイルのデータを取得(トップページ表示用)
+//トップページ用データ取得
 export const getPostsData = async (id) => {
   const blog = await client.get({
     endpoint: 'blogs',
@@ -21,6 +18,8 @@ export const getPostsData = async (id) => {
   });
 
   return blog;
+
+  //mdファイルのデータを取得(トップページ表示用)
   // const fileNames = fs.readdirSync(postsDirectory);
   // const allPostsData = fileNames.map((fileName) => {
   //   const id = fileName.replace(/\.md$/, ''); //ファイル名(URLのid)
@@ -39,15 +38,21 @@ export const getPostsData = async (id) => {
 };
 
 //getStaticPathsで使用する動的ルーティングのURLを取得
-export function getAllPostIds() {
-  const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames.map((fileName) => {
-    return {
-      params: {
-        id: fileName.replace(/\.md$/, ''), //ファイル名(URLのid)
-      },
-    };
+export async function getAllPostIds() {
+  const blog = await client.get({
+    endpoint: 'blogs',
   });
+  const ids = blog.contents.map((content) => content.id);
+  return ids;
+
+  // const fileNames = fs.readdirSync(postsDirectory);
+  // return fileNames.map((fileName) => {
+  //   return {
+  //     params: {
+  //       id: fileName.replace(/\.md$/, ''), //ファイル名(URLのid)
+  //     },
+  //   };
+  // });
 }
 
 //idに基づいてブログ投稿用データを返す
@@ -58,6 +63,14 @@ export async function getPostData(id) {
       ids: id,
     },
   });
+  // export async function getPostData(id) {
+  //   const blog = await client.get({
+  //     endpoint: 'blogs',
+  //     queries: {
+  //       ids: id,
+  //     },
+  //   });
+
   return blog;
 
   //md
