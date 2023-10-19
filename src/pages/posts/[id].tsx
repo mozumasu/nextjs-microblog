@@ -8,23 +8,32 @@ export async function getStaticPaths() {
   const paths = getAllPostIds();
 
   return {
-    paths,
+    // paths,
+    paths: [{ params: { id: 'test1' } }, { params: { id: 'test2' } }],
+
     fallback: false,
   };
 }
 
 //getStaticPathsを使用するため記述
 export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id);
+  //CMSから取得
+  const postData = await getPostData('test1');
+  console.log(postData);
+
+  // const postData = await getPostData(params.id);
 
   return {
     props: {
-      postData,
+      postData: postData.contents[0],
+      // postData,
     },
   };
 }
 
 export default function Post({ postData }) {
+  console.log(postData);
+
   return (
     <Layout home={false}>
       <Head>
@@ -32,8 +41,9 @@ export default function Post({ postData }) {
       </Head>
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-        <div className={utilStyles.lightText}>{postData.date}</div>
-        <div>{postData.blogContentHTML} </div>
+        <h1 className={utilStyles.headingXl}>{postData.discription}</h1>
+        {/* <div className={utilStyles.lightText}>{postData.date}</div>
+        <div>{postData.blogContentHTML} </div> */}
 
         {/* <div dangerouslySetInnerHTML={{ __html: postData.blogContentHTML }} /> */}
       </article>

@@ -10,12 +10,13 @@ import styles from '../styles/home.module.css';
 
 //SSGの場合
 export async function getStaticProps() {
-  const allPostsData = getPostsData(); //di, title, date, thumbnail
-  console.log(allPostsData);
+  // const allPostsData = getPostsData(); //di, title, date, thumbnail
+  // console.log(allPostsData);
 
   return {
     props: {
-      allPostsData,
+      // allPostsData,
+      allPostsData: ['test1'],
     },
   };
 }
