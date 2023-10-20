@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import Head from 'next/head';
 import Layout, { siteTitle } from '../../components/Layout';
@@ -10,25 +9,12 @@ import styles from '../styles/home.module.css';
 
 //SSGの場合
 export async function getStaticProps() {
-  // const allPostsData = getPostsData(); //di, title, date, thumbnail
-  // console.log(allPostsData);
-
   return {
     props: {
-      // allPostsData,
       allPostsData: ['test1'],
     },
   };
 }
-
-// //SSRの場合
-// export async function getServerSideProps(context) {
-//   return {
-//     props: {
-//       //コンポーネントに渡すためのprops
-//     },
-//   };
-// }
 
 export default function Home({ allPostsData }) {
   return (
