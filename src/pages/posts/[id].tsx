@@ -17,10 +17,11 @@ export async function getStaticPaths() {
 //SSG
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.id);
+  console.log(postData);
 
   return {
     props: {
-      postData,
+      postData: postData.contents[0],
     },
   };
 }
@@ -32,10 +33,8 @@ export default function Post({ postData }) {
         <title>{postData.title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{postData.contents[0].title}</h1>
-        <h1 className={utilStyles.headingXl}>
-          {postData.contents[0].description}
-        </h1>
+        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+        <h1 className={utilStyles.headingXl}>{postData.description}</h1>
       </article>
     </Layout>
   );
