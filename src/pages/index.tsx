@@ -11,6 +11,7 @@ import styles from '../styles/home.module.css';
 export async function getStaticProps() {
   return {
     props: {
+      // TODO : 動的に変更
       allPostsData: ['test1'],
     },
   };
