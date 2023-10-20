@@ -3,23 +3,24 @@ import Layout from '../../../components/Layout';
 import { getAllPostIds, getPostData } from '../../../lib/post';
 import utilStyles from '../../styles/utils.module.css';
 
-//URLの動的に変わる部分のパスを返し、pathsに含まれないパスは404ページを表示
+//URLの動的に変わる部分のパスを返す
 export async function getStaticPaths() {
-  const paths = getAllPostIds();
+  const ids = await getAllPostIds();
+  const paths = ids.map((id) => ({ params: { id } }));
 
   return {
     paths,
-    fallback: false,
+    fallback: false, //CMS上にデータがない場合404
   };
 }
 
-//getStaticPathsを使用するため記述
+//SSG
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.id);
 
   return {
     props: {
-      postData,
+      postData: postData.contents[0],
     },
   };
 }
@@ -32,10 +33,7 @@ export default function Post({ postData }) {
       </Head>
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-        <div className={utilStyles.lightText}>{postData.date}</div>
-        <div>{postData.blogContentHTML} </div>
-
-        {/* <div dangerouslySetInnerHTML={{ __html: postData.blogContentHTML }} /> */}
+        <h1 className={utilStyles.headingXl}>{postData.description}</h1>
       </article>
     </Layout>
   );
