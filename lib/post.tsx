@@ -1,18 +1,15 @@
 import { client } from '../lib/microCMS';
 
-//トップページ用データ取得
-export const getPostsData = async (id) => {
+//ブログ一覧取得
+export const getPostsData = async () => {
   const blog = await client.get({
     endpoint: 'blogs',
-    queries: {
-      ids: id,
-    },
   });
 
   return blog;
 };
 
-//getStaticPathsで使用する動的ルーティングのURLを取得
+//動的ルーティングのURLを取得
 export async function getAllPostIds() {
   const blog = await client.get({
     endpoint: 'blogs',

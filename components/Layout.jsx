@@ -4,7 +4,7 @@ import utilStyles from '../src/styles/utils.module.css';
 import Link from 'next/link';
 
 const name = 'Shin Code';
-export const siteTitle = 'Next.js blog';
+export const siteTitle = 'Mozumasu Blog';
 
 function Layout({ children, home }) {
   return (
