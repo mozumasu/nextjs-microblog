@@ -1,17 +1,17 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import Head from 'next/head';
-import Layout, { siteTitle } from '../../components/Layout';
-import { getPostsData } from '../../lib/post';
+import Image from 'next/image'
+import Link from 'next/link'
+import Head from 'next/head'
+import Layout, { siteTitle } from '../../components/Layout'
+import { getPostsData } from '../../lib/post'
 
-import utilStyle from '../styles/utils.module.css';
-import styles from '../styles/home.module.css';
+import utilStyle from '../styles/utils.module.css'
+import styles from '../styles/home.module.css'
 
 //SSGの場合
 export async function getStaticProps() {
   // const allPostData = getPostData()
-  const allPostsData = await getPostsData();
-  console.log(allPostsData);
+  const allPostsData = await getPostsData()
+  console.log(allPostsData)
 
   return {
     props: {
@@ -19,12 +19,12 @@ export async function getStaticProps() {
       // allPostsData: ['test1'],
       allPostsData,
     },
-  };
+  }
 }
 
 export default function Home({ allPostsData }) {
   // console.log(allPostsData);
-  console.log(allPostsData.contents);
+  console.log(allPostsData.contents)
   // console.log(allPostsData.contents.id);
 
   return (
@@ -58,5 +58,5 @@ export default function Home({ allPostsData }) {
         </div>
       </section>
     </Layout>
-  );
+  )
 }

@@ -1,10 +1,10 @@
-import Head from 'next/head';
-import styles from './layout.module.css';
-import utilStyles from '../src/styles/utils.module.css';
-import Link from 'next/link';
+import Head from 'next/head'
+import styles from './layout.module.css'
+import utilStyles from '../src/styles/utils.module.css'
+import Link from 'next/link'
 
-const name = 'Shin Code';
-export const siteTitle = 'Mozumasu Blog';
+const name = 'Shin Code'
+export const siteTitle = 'Mozumasu Blog'
 
 function Layout({ children, home }) {
   return (
@@ -38,7 +38,7 @@ function Layout({ children, home }) {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default Layout;
+export default Layout

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "autoprefixer": "10.4.16",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@types/node": "20.8.3",
     "@types/react": "18.2.25",
+    "prettier": "^3.0.3",
     "typescript": "5.2.2"
   }
 }
