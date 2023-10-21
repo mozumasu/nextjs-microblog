@@ -2,8 +2,9 @@ import Head from 'next/head'
 import styles from './layout.module.css'
 import utilStyles from '../src/styles/utils.module.css'
 import Link from 'next/link'
+import Image from 'next/image'
 
-const name = 'Shin Code'
+const name = 'もずます'
 export const siteTitle = 'Mozumasu Blog'
 
 function Layout({ children, home }) {
@@ -15,16 +16,22 @@ function Layout({ children, home }) {
       <header className={styles.header}>
         {home ? (
           <>
-            <img
-              src="/images/profile.png"
+            <Image
+              src="/images/profile_mozumasu.png"
+              alt="mozumasuアイコン"
+              width={300}
+              height={300}
               className={`${utilStyles.borderCircle} ${styles.headerHomeImage}`}
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
         ) : (
           <>
-            <img
-              src="/images/profile.png"
+            <Image
+              src="/images/profile_mozumasu.png"
+              alt="mozumasuアイコン"
+              width={300}
+              height={300}
               className={`${utilStyles.borderCircle}`}
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
@@ -34,7 +41,7 @@ function Layout({ children, home }) {
       <main>{children}</main>
       {!home && (
         <div>
-          <Link href="/">← ホームへ戻る</Link>
+          <Link href="/">← ホームへ</Link>
         </div>
       )}
     </div>

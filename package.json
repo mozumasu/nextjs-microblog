@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "autoprefixer": "10.4.16",
+    "cheerio": "^1.0.0-rc.12",
+    "dayjs": "^1.11.10",
     "eslint": "8.51.0",
     "eslint-config-next": "^13.5.4",
     "gray-matter": "^4.0.3",
