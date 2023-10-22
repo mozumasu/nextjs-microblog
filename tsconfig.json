@@ -16,11 +16,11 @@
     "paths": {
       "@/*": ["./src/*"],
       "~/*": ["./src/*"],
-      "@types/*": ["./types/*"],
+      "@/types/*": ["./types/*"],
       "~types/*": ["./types/*"],
-      "@lib/*": ["./lib/*"],
+      "@/lib/*": ["./lib/*"],
       "~lib/*": ["./lib/*"],
-      "@components/*": ["./components/*"],
+      "@/components/*": ["./components/*"],
       "~components/*": ["./components/*"]
     }
   },
