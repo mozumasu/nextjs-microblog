@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import Head from 'next/head'
-import Layout, { siteTitle } from '../../components/Layout'
-import { getBlogs } from '../../lib/post'
-import utilStyle from '../styles/utils.module.css'
-import styles from '../styles/home.module.css'
-import type { Blog } from '../../types/microCMS'
+import Layout, { siteTitle } from '@/../components/Layout'
+import { getBlogs } from '@/../lib/post'
+import utilStyle from '@/styles/utils.module.css'
+import styles from '@/styles/home.module.css'
+import type { Blog } from '@/../types/microCMS'
 
 //SSGの場合
 export async function getStaticProps() {
