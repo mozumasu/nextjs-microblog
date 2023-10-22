@@ -1,5 +1,5 @@
-import { client } from '@/../lib/microCMS'
-import type { Blog } from '@/../types/microCMS'
+import { client } from '@lib/microCMS'
+import type { Blog } from '~types/microCMS'
 
 //ブログ一覧取得
 export const getBlogs = async (): Promise<Blog[]> => {

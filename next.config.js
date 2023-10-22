@@ -10,6 +10,12 @@ const nextConfig = {
     // => モジュールのパス解決とエイリアスを設定している。
     config.resolve.alias['@'] = path.resolve(__dirname, 'src')
     config.resolve.alias['~'] = path.join(__dirname, 'src')
+    config.resolve.alias['@lib'] = path.resolve(__dirname, 'lib')
+    config.resolve.alias['~lib'] = path.join(__dirname, 'lib')
+    config.resolve.alias['@types'] = path.resolve(__dirname, 'types')
+    config.resolve.alias['~types'] = path.join(__dirname, 'types')
+    config.resolve.alias['@components'] = path.resolve(__dirname, 'components')
+    config.resolve.alias['~components'] = path.join(__dirname, 'components')
     return config
   },
 }
