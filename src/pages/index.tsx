@@ -1,23 +1,24 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import Head from 'next/head';
-import Layout, { siteTitle } from '../../components/Layout';
-import { getPostsData } from '../../lib/post';
-
-import utilStyle from '../styles/utils.module.css';
-import styles from '../styles/home.module.css';
+import Image from 'next/image'
+import Link from 'next/link'
+import Head from 'next/head'
+import Layout, { siteTitle } from '../../components/Layout'
+import { getBlogs } from '../../lib/post'
+import utilStyle from '../styles/utils.module.css'
+import styles from '../styles/home.module.css'
+import type { Blog } from '../../types/microCMS'
 
 //SSGの場合
 export async function getStaticProps() {
+  const allPostsData = await getBlogs()
+
   return {
     props: {
-      // TODO : 動的に変更
-      allPostsData: ['test1'],
+      allPostsData,
     },
-  };
+  }
 }
 
-export default function Home({ allPostsData }) {
+export default function Home({ allPostsData }: { allPostsData: Blog[] }) {
   return (
     <Layout home>
       <Head>
@@ -25,27 +26,35 @@ export default function Home({ allPostsData }) {
       </Head>
       <section className={utilStyle.headingMd}>
         <p>
-          フルスタックエンジニアを目指して勉強＆転職活動中です。/TypeScript、Next.js、Node.jsを勉強中です。
+          フルスタックエンジニアを目指して勉強＆転職活動中
+          <br />
+          /TypeScript/Next.js/Node.js/TailwindCSS
         </p>
       </section>
 
       <section className={`${utilStyle.headingMd} ${utilStyle.padding1px}`}>
-        <h2>📝エンジニアのブログ</h2>
+        <h2>😼技術ブログ</h2>
         <div className={styles.grid}>
-          {allPostsData.map(({ id, title, date, thumbnail }) => (
+          {allPostsData.map(({ id, title, updatedAt, thumbnail }) => (
             <article key={id}>
               <Link href={`/posts/${id}`}>
-                <img src={thumbnail} className={styles.thumbnailImage} />
+                <Image
+                  src={thumbnail.url}
+                  className={styles.thumbnailImage}
+                  alt="サムネイル"
+                  width={300}
+                  height={300}
+                />
               </Link>
               <Link legacyBehavior href={`/posts/${id}`}>
                 <a className={utilStyle.boldText}>{title}</a>
               </Link>
               <br />
-              <small className={utilStyle.lightText}>{date}</small>
+              <small className={utilStyle.lightText}>{updatedAt}</small>
             </article>
           ))}
         </div>
       </section>
     </Layout>
-  );
+  )
 }

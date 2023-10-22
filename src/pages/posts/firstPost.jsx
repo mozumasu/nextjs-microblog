@@ -1,5 +1,5 @@
-import Head from 'next/head';
-import Link from 'next/link';
+import Head from 'next/head'
+import Link from 'next/link'
 
 export default function FirstPost() {
   return (
@@ -9,5 +9,5 @@ export default function FirstPost() {
       </Head>
       <h1> 最初の投稿 </h1> <Link href="/"> ホームへ </Link>
     </div>
-  );
+  )
 }

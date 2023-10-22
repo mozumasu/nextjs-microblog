@@ -1,34 +1,33 @@
-import { client } from '../lib/microCMS';
+import { client } from '../lib/microCMS'
+import type { Blog } from '../types/microCMS'
 
-//トップページ用データ取得
-export const getPostsData = async (id) => {
+//ブログ一覧取得
+export const getBlogs = async (): Promise<Blog[]> => {
   const blog = await client.get({
     endpoint: 'blogs',
-    queries: {
-      ids: id,
-    },
-  });
+  })
 
-  return blog;
-};
+  return blog.contents
+}
 
-//getStaticPathsで使用する動的ルーティングのURLを取得
-export async function getAllPostIds() {
+//動的ルーティングのURLを取得
+export async function getBlogIds(): Promise<string[]> {
   const blog = await client.get({
     endpoint: 'blogs',
-  });
+  })
 
-  return blog.contents.map((content) => content.id);
+  return blog.contents.map((content) => content.id)
 }
 
 //idに基づいてブログ投稿用データを返す
-export async function getPostData(id) {
+export async function getBlogById(id: string): Promise<Blog> {
   const blog = await client.get({
     endpoint: 'blogs',
     queries: {
       ids: id,
     },
-  });
+  })
+  const blogContent = blog.contents[0]
 
-  return blog;
+  return blogContent
 }
