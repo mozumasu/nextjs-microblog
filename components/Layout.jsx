@@ -4,6 +4,7 @@ import utilStyles from '../src/styles/utils.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 
+// TODO :グローバルとして定義
 const name = 'もずます'
 export const siteTitle = 'Mozumasu Blog'
 
