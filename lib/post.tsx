@@ -1,13 +1,13 @@
 import { client } from '../lib/microCMS'
-import type { Blog, BlogApiResponse } from '../types/microCMS'
+import type { Blog } from '../types/microCMS'
 
 //ブログ一覧取得
-export const getBlogs = async (): Promise<BlogApiResponse> => {
+export const getBlogs = async (): Promise<Blog[]> => {
   const blog = await client.get({
     endpoint: 'blogs',
   })
 
-  return blog
+  return blog.contents
 }
 
 //動的ルーティングのURLを取得

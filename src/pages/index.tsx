@@ -5,7 +5,7 @@ import Layout, { siteTitle } from '../../components/Layout'
 import { getBlogs } from '../../lib/post'
 import utilStyle from '../styles/utils.module.css'
 import styles from '../styles/home.module.css'
-import type { BlogApiResponse } from '../../types/microCMS'
+import type { Blog } from '../../types/microCMS'
 
 //SSGの場合
 export async function getStaticProps() {
@@ -18,11 +18,7 @@ export async function getStaticProps() {
   }
 }
 
-export default function Home({
-  allPostsData,
-}: {
-  allPostsData: BlogApiResponse
-}) {
+export default function Home({ allPostsData }: { allPostsData: Blog[] }) {
   return (
     <Layout home>
       <Head>
@@ -39,7 +35,7 @@ export default function Home({
       <section className={`${utilStyle.headingMd} ${utilStyle.padding1px}`}>
         <h2>😼技術ブログ</h2>
         <div className={styles.grid}>
-          {allPostsData.contents.map(({ id, title, updatedAt, thumbnail }) => (
+          {allPostsData.map(({ id, title, updatedAt, thumbnail }) => (
             <article key={id}>
               <Link href={`/posts/${id}`}>
                 <Image
