@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import Layout from '../../../components/Layout'
-import { getBlogIds, getBlogById } from '../../../lib/post'
-import utilStyles from '../../styles/utils.module.css'
-import type { Blog } from '../../../types/microCMS'
+import Layout from '@/components/Layout'
+import { getBlogIds, getBlogById } from '@/lib/post'
+import utilStyles from '@/styles/utils.module.css'
+import type { Blog } from '@/types/microCMS'
 import Image from 'next/image'
 
 //URLの動的に変わる部分のパスを返す
