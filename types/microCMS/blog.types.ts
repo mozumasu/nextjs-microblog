@@ -21,6 +21,6 @@ export type BlogApiResponse = {
 //ブログのThumbnail
 export type BlogThumbnail = {
   url: string
-  hight: number
+  height: number
   width: number
 }

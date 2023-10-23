@@ -1,5 +1,6 @@
 import { client } from '@/lib/microCMS'
 import type { Blog } from '@/types/microCMS'
+import dayjs from 'dayjs'
 
 //ブログ一覧取得
 export const getBlogs = async (): Promise<Blog[]> => {
@@ -31,3 +32,7 @@ export async function getBlogById(id: string): Promise<Blog> {
 
   return blogContent
 }
+
+//日付の整形
+export const formatDate = (updatedAtDate: string): String =>
+  dayjs(updatedAtDate).format('YYYY-MM-DD')

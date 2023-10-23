@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Head from 'next/head'
 import Layout, { siteTitle } from '@/components/Layout'
-import { getBlogs } from '@/lib/post'
+import { formatDate, getBlogs } from '@/lib/post'
 import utilStyle from '@/styles/utils.module.css'
 import styles from '@/styles/home.module.css'
 import type { Blog } from '@/types/microCMS'
@@ -10,10 +10,16 @@ import type { Blog } from '@/types/microCMS'
 //SSGの場合
 export async function getStaticProps() {
   const allPostsData = await getBlogs()
+  const formattedAllPostsData = allPostsData.map((contents) => {
+    return {
+      ...contents,
+      updatedAt: formatDate(contents.updatedAt), //更新日付をフォーマット
+    }
+  })
 
   return {
     props: {
-      allPostsData,
+      allPostsData: formattedAllPostsData,
     },
   }
 }
