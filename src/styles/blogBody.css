@@ -1,72 +1,32 @@
 @tailwind components;
 
 @layer components {
+  /* h1 */
+  .blogBody > h1 {
+    @apply text-white text-5xl font-extrabold;
+  }
+
   /* h2 */
   .blogBody > h2 {
-    margin: 48px 0;
-    padding: 16px 24px;
-    color: #fff;
-    background-color: #709dd8;
-    font-size: 1.5rem;
-    font-weight: bold;
-    position: relative;
+    @apply text-gray-50 text-3xl font-bold flex items-center mt-14 mb-6;
+    padding: 0 16px;
   }
 
   .blogBody > h2::before {
-    position: absolute;
-    width: 100%;
-    top: -4px;
-    left: 0;
-    border-top: 2px solid #709dd8;
     content: '';
+    @apply mr-6 w-2 h-12 bg-purple-600 rounded-full;
   }
-
-  .blogBody > h2::after {
-    position: absolute;
-    width: 100%;
-    bottom: -4px;
-    left: 0;
-    border-top: 2px solid #709dd8;
-    content: '';
-  }
-  /* h2 */
 
   /* h3 */
   .blogBody > h3 {
-    margin: 40px 0;
-    padding: 12px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    position: relative;
+    @apply text-white text-xl pt-4 flex items-center ml-4 mb-4;
   }
 
   .blogBody > h3::before {
-    position: absolute;
     content: '';
-    width: 100%;
-    bottom: -10px;
-    left: 0;
-    height: 2px;
-    background: repeating-linear-gradient(
-      90deg,
-      #709dd8 0%,
-      #709dd8 30%,
-      rgba(150, 150, 150, 0.2) 30%,
-      rgba(150, 150, 150, 0.2) 100%
-    );
+    @apply w-4 h-1 bg-gray-100 rounded-s-sm mr-4;
   }
   /* h3 */
-
-  /* h4 */
-  .blogBody > h4 {
-    margin: 36px 0 20px;
-    padding-left: 16px;
-    border-left: solid 2px #709dd8;
-    font-size: 16px;
-    line-height: 1.5;
-  }
-  /* h4 */
-
   /* a */
   .blogBody > a {
     color: #1176d4;
@@ -76,8 +36,7 @@
 
   /* p */
   .blogBody > p {
-    padding: 0 16px;
-    line-height: 3;
+    @apply text-gray-400 text-lg p-4 mt-2;
   }
   /* p */
 
@@ -158,7 +117,7 @@
   /* img */
 
   /* blogCard */
-  .blogCard {
+  /* .blogCard {
     display: flex;
     align-items: center;
     padding: 24px;
@@ -214,9 +173,9 @@
     right: 8px;
     color: #808080;
     font-size: 8px;
-  }
+  } */
 
-  @media screen and (max-width: 539px) {
+  /* @media screen and (max-width: 539px) {
     .blogCard {
       padding: 18px 12px;
     }
@@ -243,11 +202,11 @@
     .blogCard__site {
       display: none;
     }
-  }
+  } */
   /* blogCard */
 
   /* blogCardTwitter */
-  .blogCardTwitter {
+  /* .blogCardTwitter {
     display: flex;
     align-items: center;
     padding: 8px 12px;
@@ -272,12 +231,12 @@
     right: 8px;
     color: #808080;
     font-size: 8px;
-  }
+  } */
   /* blogCardTwitter */
 
   /* twitter-tweet-rendered */
-  .blogBody > .twitter-tweet-rendered {
+  /* .blogBody > .twitter-tweet-rendered {
     margin: 0 auto;
-  }
+  } */
   /* twitter-tweet-rendered */
 }

@@ -1,6 +1,7 @@
 import { client } from '@/lib/microCMS'
 import type { Blog } from '@/types/microCMS'
 import dayjs from 'dayjs'
+import { parseBlogBody } from '@/libs/cheerio/parse'
 
 //ブログ一覧取得
 export const getBlogs = async (): Promise<Blog[]> => {
@@ -29,8 +30,12 @@ export async function getBlogById(id: string): Promise<Blog> {
     },
   })
   const blogContent = blog.contents[0]
+  const parseBody = await parseBlogBody(blogContent.body)
 
-  return blogContent
+  return {
+    ...blogContent,
+    body: parseBody,
+  }
 }
 
 //日付の整形

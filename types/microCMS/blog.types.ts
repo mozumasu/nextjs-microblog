@@ -9,6 +9,7 @@ export type Blog = {
   thumbnail: BlogThumbnail
   title: string
   updatedAt: string
+  parseBody: any
 }
 //APIを叩いたときに返ってくるデータ
 export type BlogApiResponse = {
